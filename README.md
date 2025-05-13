@@ -96,17 +96,18 @@
   <img src="https://github.com/user-attachments/assets/951684bd-62d5-40df-be46-058d41661e36" width="45%">
 </p>
 
-## Hướng phát triển
-
-- Mở rộng ứng dụng trên đường cao tốc, bến cảng, đường sắt...
-- Kết nối nhiều trạm để phân tích tổng thể giao thông khu vực.
-
----
 
 > **Tác giả**: Nhóm học sinh Trường THPT Hoa Lư A, Ninh Bình (tôi: Phạm Thanh Tùng - Hoàng Tiến Đạt)
+
+* **Phạm Thanh Tùng** – Phụ trách chính phần **lập trình, xử lý ảnh, thuật toán tính tốc độ và điều khiển hệ thống Arduino**.
+* **Hoàng Tiến Đạt** – Phụ trách phần **thiết kế, lắp ráp phần cứng, lựa chọn linh kiện và triển khai thực tế**.
+
+Cả hai thành viên cùng tham gia nghiên cứu, xây dựng ý tưởng và thử nghiệm hệ thống.
+
 > **Thầy hưỡng dẫn**: Nguyễn Mạnh Tú.
 
 > **Thời gian thực hiện**: 08/2021 – 03/2022
+> 
 > **Cuộc thi**: Khoa học kỹ thuật cấp quốc gia, năm học 2021 – 2022
 
 ## Ghi chú & Lời cảm ơn
