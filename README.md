@@ -30,6 +30,123 @@
 - Và tính toán tốc độ, cảnh báo và chụp ảnh xe vi phạm.
 
 
+# Chi tiết về công nghệ sử dụng trong hệ thống của dự án:
+
+## Phần mềm
+
+### 1. Python/OpenCV
+- **Mô tả**: Nền tảng xử lý hình ảnh và phát hiện đối tượng chính của hệ thống.
+- **Thành phần và tính năng**:
+  - **OpenCV**: Thư viện Computer Vision mã nguồn mở
+    - Hỗ trợ thuật toán trừ nền (BackgroundSubtractorMOG)
+    - Cung cấp các hàm xử lý hình ảnh như threshold, morphologyEx, erode
+    - Hỗ trợ tìm và xử lý đường viền (contours)
+    - Vẽ hình chữ nhật, đường thẳng để đánh dấu đối tượng và vùng tính toán
+  
+  - **Lấy dữ liệu từ camera**:
+    ```python
+    # Đọc video từ camera IP
+    cap = cv2.VideoCapture('rtsp://admin:abcd1234@192.168.0.109/8000', cv2.CAP_FFMPEG)
+    ```
+
+### 2. Firebase
+- **Mô tả**: Nền tảng đám mây để lưu trữ dữ liệu và hình ảnh vi phạm.
+- **Thành phần và tính năng**:
+  - **Realtime Database**: Cơ sở dữ liệu thời gian thực để lưu thông tin vi phạm
+  - **Cloud Storage**: Lưu trữ hình ảnh phương tiện vi phạm tốc độ
+  - **Kết nối thông qua thư viện Pyrebase**:
+
+
+### 3. Arduino IDE (C/C++)
+- **Mô tả**: Phần mềm lập trình cho vi điều khiển Arduino để điều khiển hệ thống cảnh báo vật lý.
+- **Thành phần và tính năng**:
+  - **Giao tiếp Serial**: Nhận dữ liệu từ Mini PC qua cổng COM
+    ```python
+    # Kết nối với Arduino qua cổng COM6, tốc độ 115200 baud
+    ser = serial.Serial('COM6', 115200, timeout=0)
+    
+    # Gửi dữ liệu tốc độ tới Arduino
+    send_vt = str(vantoc) + '\n'
+    ser.write(bytes(send_vt, 'utf-8'))
+    ```
+  
+  - **Điều khiển đèn cảnh báo**: Dựa trên dữ liệu tốc độ nhận được từ Mini PC
+    - Kích hoạt đèn báo khi phát hiện phương tiện đang tiến đến điểm giao cắt
+    - Thay đổi mức độ cảnh báo (tần số nhấp nháy, cường độ) dựa trên tốc độ của phương tiện
+    - Tắt đèn cảnh báo sau một khoảng thời gian nhất định hoặc khi phương tiện đã đi qua điểm giao cắt
+  
+  - **Điều khiển còi cảnh báo**: Kích hoạt âm thanh cảnh báo khi cần thiết (có phương tiện đi với tốc độ cao tới giao cắt)
+    - Điều chỉnh thời gian cảnh báo phù hợp với tình huống giao thông
+
+## Phần cứng
+
+### 1. Camera Hikvision
+- **Mô tả**: Camera IP công nghiệp được sử dụng để giám sát điểm giao cắt. 
+- **Đặc điểm kỹ thuật**:
+  - Độ phân giải cao, hỗ trợ ghi hình cả ngày lẫn đêm
+  - Được kết nối qua giao thức RTSP (Real Time Streaming Protocol): `rtsp://admin:abcd1234@192.168.0.109/8000`
+  - Góc nhìn rộng để bao quát toàn bộ điểm giao cắt
+  - Khả năng chịu điều kiện thời tiết khác nhau khi lắp đặt ngoài trời
+  - Hỗ trợ nén video H.264/H.265 giúp giảm băng thông khi truyền dữ liệu
+
+### 2. Mini PC ASUS
+- **Mô tả**: Máy tính nhỏ gọn, tiết kiệm năng lượng đảm nhiệm vai trò xử lý hình ảnh và chạy thuật toán phát hiện phương tiện.
+- **Cấu hình**:
+  - CPU đủ mạnh để xử lý thuật toán trừ nền và theo dõi đối tượng thời gian thực
+  - RAM tối thiểu 4GB để đảm bảo xử lý video mượt mà
+  - Kết nối mạng LAN/WiFi để nhận dữ liệu từ camera và truyền lên Firebase
+  - Cổng COM/USB để giao tiếp với Arduino
+  - Hệ điều hành Windows
+
+### 3. Arduino Mega 2560
+- **Mô tả**: Vi điều khiển đóng vai trò trung gian giữa phần mềm xử lý hình ảnh và hệ thống cảnh báo vật lý.
+- **Đặc điểm kỹ thuật**:
+  - Microcontroller ATmega2560
+  - 54 chân I/O số (trong đó 15 chân có thể xuất xung PWM)
+  - 16 chân đầu vào analog
+  - 4 UART (cổng nối tiếp phần cứng)
+  - Tốc độ xung nhịp 16 MHz
+  - Kết nối với Mini PC qua cổng COM6 với tốc độ baud 115200
+  - Chịu trách nhiệm điều khiển đèn cảnh báo và còi thông qua module relay
+
+### 4. Module Relay 16 kênh
+- **Mô tả**: Mạch chuyển mạch điện để điều khiển các thiết bị cảnh báo công suất lớn.
+- **Đặc điểm kỹ thuật**:
+  - 16 kênh relay độc lập
+  - Điện áp điều khiển 5V (tương thích với Arduino)
+  - Ngõ ra tiếp điểm thường mở (NO) và thường đóng (NC)
+  - Khả năng chịu tải 10A/250VAC hoặc 10A/30VDC
+  - Đèn LED báo trạng thái cho mỗi kênh
+  - Kích hoạt mức logic thấp (active low)
+
+### 5. Đèn LED cảnh báo
+- **Mô tả**: Hệ thống đèn cảnh báo được lắp đặt tại điểm giao cắt để thông báo cho người tham gia giao thông.
+- **Đặc điểm kỹ thuật**:
+  - Đèn LED công suất lớn, ánh sáng mạnh, dễ nhận biết trong nhiều điều kiện thời tiết
+  - Có thể nhấp nháy với tần số khác nhau tùy vào mức độ cảnh báo
+  - Màu sắc khác nhau cho các mức độ cảnh báo (vàng cho cảnh báo thông thường, đỏ cho cảnh báo khẩn cấp)
+  - Được điều khiển qua module relay từ Arduino
+
+## Tích hợp hệ thống
+
+- **Luồng dữ liệu**:
+  1. Camera ghi hình điểm giao cắt và truyền video theo thời gian thực tới Mini PC
+  2. Mini PC xử lý video để phát hiện phương tiện và tính toán tốc độ
+  3. Khi phát hiện phương tiện, Mini PC gửi thông tin tới Arduino qua cổng COM
+  4. Arduino điều khiển đèn và còi cảnh báo thông qua Module Relay
+  5. Nếu phát hiện phương tiện vi phạm tốc độ, hình ảnh được lưu vào bộ nhớ và tải lên Firebase
+
+- **Vận hành tự động**:
+  - Hệ thống hoạt động liên tục và tự động 24/7
+  - Tự động điều chỉnh mức độ cảnh báo dựa trên tình huống giao thông
+  - Ghi nhận vi phạm và lưu trữ dữ liệu không cần sự can thiệp của con người
+
+- **Tiết kiệm năng lượng**:
+  - Hệ thống chỉ kích hoạt cảnh báo khi phát hiện phương tiện
+  - Đèn và còi cảnh báo được tắt sau khi phương tiện đã đi qua điểm giao cắt
+  - Sử dụng Mini PC và Arduino có mức tiêu thụ điện năng thấp
+
+
 ## Chi tiết về thuật toán phát hiện phương tiện tại điểm giao cắt
 
 
@@ -148,19 +265,6 @@ def getSpeed(self, id):
     * Tự động chụp ảnh phương tiện vi phạm.
     * Gửi ảnh và dữ liệu vi phạm thời gian thực lên **Firebase** để lưu trữ và hỗ trợ giám sát từ xa.
 
-## Công nghệ sử dụng
-
-- **Phần cứng**: Camera Hikvision, Mini PC ASUS, Arduino Mega 2560, Module Relay 16, Đèn LED cảnh báo.
-- **Phần mềm**: 
-  - Python/OpenCV (xử lý ảnh).
-  - Firebase (Lưu trữ dữ liệu)
-  - Arduino IDE (C++) cho điều khiển thiết bị.
-
-## Kiến trúc hệ thống
-
-1. **Phát hiện**: Camera thu hình phương tiện.
-2. **Xử lý**: Mini PC phân tích tốc độ, hướng di chuyển.
-3. **Cảnh báo**: Arduino kích hoạt đèn/còi theo tình huống.
 
 ## Kết quả thử nghiệm
 
