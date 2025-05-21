@@ -1,8 +1,41 @@
-# Intelligent Traffic Monitoring and Warning System at Dangerous Intersections
-# Hệ thống cảnh báo, giám sát giao thông thông minh tại các điểm giao cắt nguy hiểm
+# Hệ thống cảnh báo, giám sát giao thông thông minh tại các điểm giao cắt nguy hiểm - Intelligent Traffic Monitoring and Warning System at Dangerous Intersections
 > ⚠️ **Lưu ý**:
 > - Repository này hiện **không chứa mã nguồn** của hệ thống do một số lý do liên quan đến **bảo mật và quyền riêng tư của cuộc thi** nếu có thắc mắc vui lòng liên hệ qua email tungpham010203@gmail.com.
 ---
+## 📑 Mục lục
+
+- [🏆 Thành tích - Các bài báo](#thành-tích---các-bài-báo)
+- [📌 Giới thiệu](#giới-thiệu)
+- [💻 Chi tiết về công nghệ sử dụng](#chi-tiết-về-công-nghệ-sử-dụng-trong-hệ-thống-của-dự-án)
+  - [🖥️ Phần mềm](#phần-mềm)
+    - [1. Python/OpenCV](#1-pythonopencv)
+    - [2. Firebase](#2-firebase)
+    - [3. Arduino IDE (CC++)](#3-arduino-ide-cc)
+  - [🔌 Phần cứng](#phần-cứng)
+    - [1. Camera Hikvision](#1-camera-hikvision)
+    - [2. Mini PC ASUS](#2-mini-pc-asus)
+    - [3. Arduino Mega 2560](#3-arduino-mega-2560)
+    - [4. Module Relay 16 kênh](#4-module-relay-16-kênh)
+    - [5. Đèn LED cảnh báo](#5-đèn-led-cảnh-báo)
+- [🔄 Tích hợp hệ thống](#tích-hợp-hệ-thống)
+- [🧠 Chi tiết về thuật toán phát hiện phương tiện](#chi-tiết-về-thuật-toán-phát-hiện-phương-tiện-tại-điểm-giao-cắt)
+  - [1. Nguyên lý hoạt động tổng quát](#1-nguyên-lý-hoạt-động-tổng-quát)
+  - [2. Phát hiện chuyển động bằng trừ nền](#2-phát-hiện-chuyển-động-bằng-trừ-nền)
+  - [3. Xử lý hình ảnh để loại bỏ nhiễu](#3-xử-lý-hình-ảnh-để-loại-bỏ-nhiễu)
+  - [4. Tìm đường viền và xác định phương tiện](#4-tìm-đường-viền-và-xác-định-phương-tiện)
+  - [5. Theo dõi đối tượng và gán ID](#5-theo-dõi-đối-tượng-và-gán-id)
+  - [6. Xác định vị trí và tính toán tốc độ](#6-xác-định-vị-trí-và-tính-toán-tốc-độ)
+  - [7. Cảnh báo và ghi nhận vi phạm](#7-cảnh-báo-và-ghi-nhận-vi-phạm)
+- [Tiêu chí của hệ thống](#tiêu-chí-của-hệ-thống)
+- [Tính năng chính](#tính-năng-chính)
+  - [Phát hiện phương tiện ở các hướng đến điểm giao cắt](#phát-hiện-phương-tiện-ở-các-hướng-đến-điểm-giao-cắt)
+  - [Tính toán tốc độ phương tiện](#tính-toán-tốc-độ-phương-tiện)
+  - [Cảnh báo và giám sát thông minh](#cảnh-báo-và-giám-sát-thông-minh)
+- [Kết quả thử nghiệm](#kết-quả-thử-nghiệm)
+  - [Ưu điểm của phương pháp này](#ưu-điểm-của-phương-pháp-này)
+  - [Hạn chế](#hạn-chế)
+- [Một số hình ảnh thử nghiệm trên camera được lắp trước điểm giao cắt trước cổng trường học](#một-số-hình-ảnh-thử-nghiệm-trên-camera-được-lắp-trước-điểm-giao-cắt-trước-cổng-trường-học)
+- [Ghi chú & Lời cảm ơn](#ghi-chú--lời-cảm-ơn)
 
 
 # Thành tích - Các bài báo
@@ -317,7 +350,7 @@ def getSpeed(self, id):
 
 
 
-
+## Ghi chú & Lời cảm ơn
 > **Tác giả**: Nhóm học sinh Trường THPT Hoa Lư A, Ninh Bình (tôi: Phạm Thanh Tùng - Hoàng Tiến Đạt)
 
 >* **Phạm Thanh Tùng** – Phụ trách chính phần **lập trình, xử lý ảnh, thuật toán tính tốc độ và điều khiển hệ thống Arduino**.
@@ -331,14 +364,12 @@ Cả hai thành viên cùng tham gia nghiên cứu, xây dựng ý tưởng và 
 > 
 > **Cuộc thi**: Khoa học kỹ thuật cấp quốc gia, năm học 2021 – 2022
 
-## Ghi chú & Lời cảm ơn
 
-Chúng tôi cũng xin gửi lời cảm ơn chân thành đến cộng đồng Arduino, Python và xử lý ảnh – những người đã chia sẻ vô số tài liệu, hướng dẫn, bài viết, video và kinh nghiệm thực tiễn. Sự cởi mở và sẵn sàng chia sẻ kiến thức của cộng đồng là nền tảng giúp những người trẻ như chúng tôi tiếp cận và hiện thực hóa các ý tưởng công nghệ.
+#### Chúng tôi cũng xin gửi lời cảm ơn chân thành đến cộng đồng Arduino, Python và xử lý ảnh – những người đã chia sẻ vô số tài liệu, hướng dẫn, bài viết, video và kinh nghiệm thực tiễn. Sự cởi mở và sẵn sàng chia sẻ kiến thức của cộng đồng là nền tảng giúp những người trẻ như chúng tôi tiếp cận và hiện thực hóa các ý tưởng công nghệ.
 
-> **⚠️⚠️**
+> *⚠️⚠️*
 > * Dự án này được thực hiện **với mục đích học tập, nghiên cứu khoa học và đóng góp vào các giải pháp ứng dụng thực tiễn**.
 > * **Không sử dụng cho mục đích thương mại** dưới bất kỳ hình thức nào.
 > * Một số đoạn mã, thư viện và ý tưởng thuật toán trong dự án có tham khảo từ cộng đồng, chúng tôi đã có sự kế thừa và phát triển từ các nguồn mở và cá nhân có cùng đam mê.
 
 Một lần nữa, xin chân thành cảm ơn cộng đồng kỹ thuật đã chia sẻ tri thức quý báu.
-
