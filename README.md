@@ -1,26 +1,34 @@
 # Intelligent Traffic Monitoring and Warning System at Dangerous Intersections
 # Hệ thống cảnh báo, giám sát giao thông thông minh tại các điểm giao cắt nguy hiểm
 > ⚠️ **Lưu ý**:
-> - Repository này hiện **không chứa mã nguồn** của hệ thống do một số lý do liên quan đến **bảo mật và quyền riêng tư** nếu có thắc mắc vui lòng liên hệ qua email tungpham010203@gmail.com.
+> - Repository này hiện **không chứa mã nguồn** của hệ thống do một số lý do liên quan đến **bảo mật và quyền riêng tư của cuộc thi** nếu có thắc mắc vui lòng liên hệ qua email tungpham010203@gmail.com.
 ---
+
+
+# Thành tích - Các bài báo
+
+- 🥉 **Giải Ba cấp Quốc gia** Cuộc thi Khoa học kỹ thuật học sinh trung học năm học 2021-2022  
+
+  **Link:**
+  - [Báo Ninh Bình](https://baoninhbinh.org.vn/hai-nam-sinh-truong-thpt-hoa-lu-a-voi-giai-ba-quoc-gia-ve-sang-kien-canh-bao-giao-thong-thong-minh/d20220607082731436.htm)
+  - [Đài NBTV](https://nbtv.vn/news/401/48578/du-an-cua-hoc-sinh-truong-thpt-hoa-lu-a-dat-giai-ba-cuoc-thi-khoa-hoc-ky-thuat-quoc-gia)
+  - [Báo Ninh Bình](https://baoninhbinh.org.vn/ninh-binh-co-2-du-an-dat-giai-ba-cuoc-thi-nghien-cuu-khkt/d2022032722111733.htm)
+  - [Tuyensinh247](https://tuyensinh247.com/bai-tap-560791.html)
+  - [Báo NBTV](https://nbtv.vn/news/401/26640/sang-kien-huu-ich-dam-bao-atgt-tai-diem-giao-cat-nguy-hiem)
+
+- 🥇 **Giải Nhất cấp tỉnh Ninh Bình** Cuộc thi Khoa học kỹ thuật học sinh trung học năm học 2021-2022
+
+  **Link:**
+  - [Báo Phòng GD&ĐT TP Ninh Bình](https://ninhbinh.edu.vn/pgdtpninhbinh/cong-van-van-ban/van-ban-phong-gd-dt/thong-bao-ket-qua-cuoc-thi-khoa-hoc-ky-thuat-danh-cho-hoc-si4.html)
+  - [Báo Dân Sinh](https://dansinh.dantri.com.vn/dien-dan-dan-sinh/68-du-an-doat-giai-khoa-hoc-ki-thuat-tinh-ninh-binh-20220102224339000.htm)
+
+
 ## Giới thiệu
 
 - Dự án nhằm giải quyết vấn đề tai nạn giao thông tại các điểm giao cắt nguy hiểm (bị che khuất, tầm nhìn hạn chế), bằng cách xây dựng một hệ thống cảnh báo, giám sát thông minh, tự động phát hiện phương tiện đi tới điểm giao cắt để đưa ra cảnh báo cho các phương tiện từ hướng khác **Rằng:** có phương tiện đang đi tới điểu giao cắt.
 - Điểm giao cắt ở đây là điểm giao cắt có mật độ phương tiện thấp chưa cần dùng đèn gia thông (xanh-vàng_đỏ).
 - Và tính toán tốc độ, cảnh báo và chụp ảnh xe vi phạm.
 
-## Thành tích
-
-- 🥇 **Giải Nhất cấp tỉnh Ninh Bình** Cuộc thi Khoa học kỹ thuật học sinh trung học năm học 2021-2022 
-  
-  [Phòng GD&ĐT TP Ninh Bình](https://ninhbinh.edu.vn/pgdtpninhbinh/cong-van-van-ban/van-ban-phong-gd-dt/thong-bao-ket-qua-cuoc-thi-khoa-hoc-ky-thuat-danh-cho-hoc-si4.html)
-
-- 🥉 **Giải Ba cấp Quốc gia** Cuộc thi Khoa học kỹ thuật học sinh trung học năm học 2021-2022  
-  Được giới thiệu trên nhiều báo:
-  - [Báo Ninh Bình](https://baoninhbinh.org.vn/hai-nam-sinh-truong-thpt-hoa-lu-a-voi-giai-ba-quoc-gia-ve-sang-kien-canh-bao-giao-thong-thong-minh/d20220607082731436.htm)
-  - [Báo Ninh Bình](https://baoninhbinh.org.vn/ninh-binh-co-2-du-an-dat-giai-ba-cuoc-thi-nghien-cuu-khkt/d2022032722111733.htm)
-  - [Đài NBTV](https://nbtv.vn/news/401/48578/du-an-cua-hoc-sinh-truong-thpt-hoa-lu-a-dat-giai-ba-cuoc-thi-khoa-hoc-ky-thuat-quoc-gia)
-  - [Tuyensinh247](https://tuyensinh247.com/bai-tap-560791.html)
 
 ## Tiêu chí của hệ thống:
 
